@@ -22,7 +22,7 @@ resource "google_cloudfunctions2_function" "api_function" {
   description = "REST API handler"
   build_config {
     runtime     = "python310"
-    entry_point = "api_handler"
+    entry_point = "my-flask-api"
     source {
       storage_source {
         bucket = google_storage_bucket.function_bucket.name
