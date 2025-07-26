@@ -1,13 +1,11 @@
-import functions_framework
-from flask import request, jsonify
 from google.cloud import firestore
 import uuid
+from flask import jsonify
 
 db = firestore.Client()
 collection = db.collection('items')
 
-@functions_framework.http
-def api_handler(request):
+def hello_http(request):
     if request.method == 'POST':
         data = request.get_json(silent=True)
         if not data:
@@ -26,9 +24,6 @@ def api_handler(request):
             else:
                 return jsonify({'error': 'Item not found'}), 404
         else:
-            # Optional: return all items
             docs = collection.stream()
             all_items = [doc.to_dict() for doc in docs]
             return jsonify(all_items), 200
-    else:
-        return jsonify({'error': 'Method not allowed'}), 405
