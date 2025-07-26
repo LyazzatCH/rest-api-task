@@ -1,5 +1,5 @@
 variable "project_id" {
-  default = "your-gcp-project-id"
+  default = "rest-api-task"
 }
 variable "region" {
   default = "us-central1"
